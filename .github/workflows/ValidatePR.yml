@@ -21,8 +21,7 @@ jobs:
           title="${{ github.event.pull_request.title }}"
           ID_PR=$(echo "$title" | grep -oP '(?<=\[)[^]]+')
 
-          environment="${{ github.event.pull_request.base.ref }}"
-          if [[ "$environment" == "main" ]]; then
+          if [[ "$environment" == PROD_DEPLOY* ]]; then
             ID_PR="${ID_PR%_*}"
           fi
           echo "ID_PR=$ID_PR" >> $GITHUB_OUTPUT
